@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Registration Page</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1>Registration Form</h1>
+                    <form action="{% url 'submitRegistration' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="form-group">
+                        <label for="firstName">First Name: </label> 
+                        <span style="display: flex;">
+                            <input type="text" name="firstName" class="form-control" placeholder="e.g. Ayush" required>
+                            
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name: </label> 
+                        <span style="display: flex;">
+                            <input type="text" name="lastName" class="form-control" placeholder="e.g. Jadhav" required>
+                            
+                        </span>
+                    </div>
+                     <div class="form-group">
+                        <label for="email">Email: </label> 
+                        <span style="display: flex;">
+                            <input type="email" name="email" class="form-control" placeholder="e.g. abc@gmail.com" required>
+                            
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number: </label> 
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <select id="country_code" name="country_code" class="form-control">
+                                    <option value="+1">+1</option>
+                                    <option value="+91">+91</option>
+                                    <option value="+353">+353</option>
+                                </select>
+                            
+                            <input type="text" name="phone" class="form-control" placeholder="e.g. 999999999" required>
+                            
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>User Type:</label>
+                        <div class="radio">
+                            <label><input type="radio" name="user_type" value="lender" checked> Lender</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="user_type" value="renter"> Renter</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 200px;"><i class="fa fa-plus"></i> Register</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
