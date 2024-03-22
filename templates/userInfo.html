@@ -1,0 +1,15 @@
+
+
+<h1>User Information</h1>
+    
+
+    <p>Email: {{ userInfo.user.email }}</p>
+    <p>First Name : {{ userInfo.user.first_name }}
+    <p>Last Name : {{ userInfo.user.last_name }}
+    
+    <p>phone: {{ userInfo.phone }}</p>
+    <p>isLender: {{ userInfo.isLender }}</p>
+    
+     <div class="mb-3">
+            <p><a href="{% url 'edit' %}"> Click here to edit.</a></p>
+        </div> 

@@ -65,10 +65,21 @@ def edit(request):
         
         if user_form.is_valid():
             user_form.save()
-            return redirect(reverse('property_listing:feed'))
+            return redirect(reverse('property_listing:index'))
     else:
         user_form=UserEditForm(instance=request.user)
     return render(request,'edit.html',{'user_form':user_form})    
     
    
-        
+@login_required
+def profile(request):
+    try:
+        print(request.user)
+        userInfo = Signup.objects.get(user=request.user)
+    except Signup.DoesNotExist:
+        # Handle the case where the object does not exist
+        # For example, you can return a 404 response
+        return HttpResponse("Signup not found")
+    
+    print(userInfo)
+    return render(request, 'userInfo.html', {'userInfo': userInfo})        
