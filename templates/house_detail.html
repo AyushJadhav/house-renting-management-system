@@ -1,0 +1,8 @@
+<!-- house_detail.html -->
+<h1>{{ house.title }}</h1>
+<p>{{ house.description }}</p>
+<p>Price: {{ house.price }}</p>
+<h2>Images:</h2>
+{% for image in house.images.all %}
+    <img src="{{ image.image.url }}" alt="House Image">
+{% endfor %}

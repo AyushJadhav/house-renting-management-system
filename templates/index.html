@@ -1,77 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Renting System</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Find your temporary nest</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>    
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'registration' %}">Register</a></li>
-            </ul>        
-            
-        </div>
-    </nav>
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
 
-    <!-- Property Listings -->
-    <div class="container">
-        <h2>Available Properties</h2>
-        <div class="row">
-            <!-- Property 1 -->
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <img src="property1.jpg" alt="Property 1">
-                    <div class="caption">
-                        <h3>Property 1</h3>
-                        <p>Address: 123 Main St, City</p>
-                        <p>Price: $1000/month</p>
-                        <p><a href="#" class="btn btn-primary" role="button">View Details</a></p>
-                    </div>
-                </div>
+<h1>House List</h1>
+    <ul>
+        {% for property in properties %}
+          
+            
+             <h3>{{property.title}}</h3>
+              <div id="propertyCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        {% for image in property.images.all %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ image.image.url }}"  alt="Property Image" style="width: 50%; height: 300px;">
             </div>
-            <!-- Property 2 -->
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <img src="property2.jpg" alt="Property 2">
-                    <div class="caption">
-                        <h3>Property 2</h3>
-                        <p>Address: 456 Elm St, Town</p>
-                        <p>Price: $1200/month</p>
-                        <p><a href="#" class="btn btn-primary" role="button">View Details</a></p>
-                    </div>
-                </div>
-            </div>
-            <!-- Property 3 -->
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <img src="property3.jpg" alt="Property 3">
-                    <div class="caption">
-                        <h3>Property 3</h3>
-                        <p>Address: 789 Oak St, Village</p>
-                        <p>Price: $800/month</p>
-                        <p><a href="#" class="btn btn-primary" role="button">View Details</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+    <a class="carousel-control-prev" href="#propertyCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#propertyCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+                        <p>Address: {{property.address}}</p>
+                        <p>Price: ${{property.price}}/month</p>
+                        
+            
+        {% endfor %}
+    </ul>
+    
 
     <!-- Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    // Initialize Bootstrap Carousel
+    $(document).ready(function(){
+        $('#propertyCarousel').carousel();
+    });
+</script>
+{% endblock %}
