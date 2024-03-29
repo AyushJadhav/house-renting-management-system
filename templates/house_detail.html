@@ -1,8 +1,56 @@
-<!-- house_detail.html -->
-<h1>{{ house.title }}</h1>
-<p>{{ house.description }}</p>
-<p>Price: {{ house.price }}</p>
-<h2>Images:</h2>
-{% for image in house.images.all %}
-    <img src="{{ image.image.url }}" alt="House Image">
-{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title text-center">Property Details</h2>
+          </div>
+          <div class="card-body">
+            <!-- Property Details -->
+            <h3>{{ property.title }}</h3>
+            <ul class="list-unstyled">
+              <li><strong>Address:</strong> {{ property.address }}</li>
+              <li><strong>Price:</strong> ${{ property.price }}</li>
+              <li><strong>Bedrooms:</strong> {{ property.bedroom }}</li>
+              <li><strong>Bathrooms:</strong> {{ property.bathroom }}</li>
+              <li><strong>Available From:</strong> {{ property.availableFrom }}</li>
+              <li><strong>Furnished:</strong> {% if property.furnished %}Yes{% else %}No{% endif %}</li>
+              <li><strong>Lease:</strong> {{ property.lease }}</li>
+              <li><strong>Owner Email:</strong> {{ property.owner_email }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Images -->
+    <div class="row mt-4">
+      <div class="col-md-10 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title text-center">Property Images</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              {% for image in property.images.all %}
+              <div class="col-md-3 mb-3">
+                <img src="{{ image.image.url }}" class="img-fluid" alt="Property Image">
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

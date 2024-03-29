@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import *
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
-from .forms import UsersForm, UserEditForm
+from .forms import UserEditForm
 from django.http import HttpResponse
 from django.urls import reverse
 
@@ -32,7 +32,7 @@ def registration(request):
         #user = User.objects.create(firstName=fname, lastName=lname, email=email, password=password, phone=countryCode+phone, isLender=isLender)
         
         messages.success(request, "Register Successful")
-        return redirect('register_done.html')
+        return render('register_done.html')
     return render(request, 'Registration.html', locals())
  
 def login_user(request):
@@ -47,11 +47,11 @@ def login_user(request):
             if userd.isLender:
                 login(request, user)
                 messages.success(request, "Lender User")
-                return redirect(reverse('property_listing:post'))
+                return redirect(reverse('properties:lender'))
             else:
                 login(request, user)
                 messages.success(request, "Renter User")
-                return redirect(reverse('property_listing:index'))
+                return redirect(reverse('properties:index'))
         else:
             messages.error(request, "Invalid User")
             return redirect('login_user')
@@ -65,7 +65,7 @@ def edit(request):
         
         if user_form.is_valid():
             user_form.save()
-            return redirect(reverse('property_listing:index'))
+            return redirect(reverse('properties:index'))
     else:
         user_form=UserEditForm(instance=request.user)
     return render(request,'edit.html',{'user_form':user_form})    

@@ -1,45 +1,53 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-
-<h1>House List</h1>
-    <ul>
+<div class="container mt-5">
+    <h1 class="text-center">House List</h1>
+    <div class="row">
         {% for property in properties %}
-          
-            
-             <h3>{{property.title}}</h3>
-              <div id="propertyCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        {% for image in property.images.all %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ image.image.url }}"  alt="Property Image" style="width: 50%; height: 300px;">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div id="propertyCarousel_{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for image in property.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.image.url }}" class="d-block w-100" alt="Property Image">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#propertyCarousel_{{ forloop.counter }}" role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#propertyCarousel_{{ forloop.counter }}" role="button"
+                        data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ property.title }}</h3>
+                    <p class="card-text">Address: {{ property.address }}</p>
+                    <p class="card-text">Price: ${{ property.price }}/month</p>
+                    <a href="{% url 'properties:property_details' property.id %}" class="btn btn-primary">Details</a>
+                </div>
             </div>
+        </div>
         {% endfor %}
     </div>
-    <a class="carousel-control-prev" href="#propertyCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#propertyCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-                        <p>Address: {{property.address}}</p>
-                        <p>Price: ${{property.price}}/month</p>
-                        
-            
-        {% endfor %}
-    </ul>
-    
+</div>
+{% endblock %}
 
-    <!-- Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-    // Initialize Bootstrap Carousel
-    $(document).ready(function(){
-        $('#propertyCarousel').carousel();
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Initialize Bootstrap Carousels
+    $(document).ready(function () {
+        {% for property in properties %}
+        $('#propertyCarousel_{{ forloop.counter }}').carousel();
+        {% endfor %}
     });
 </script>
-{% endblock %}
