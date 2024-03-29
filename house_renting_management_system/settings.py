@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-7_&n=e4j3sle=gi1#m8bh#v8^pnq!7*g)e$r9ud7(5%_r-8wn2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['c6ac8cebb11844a1b76e3ea6d970f2de.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = ['c6ac8cebb11844a1b76e3ea6d970f2de.vfs.cloud9.eu-west-1.amazonaws.com',
+'house-renting-system-x23178248-env-1.eba-4y7b5hzt.eu-west-2.elasticbeanstalk.com/']
 
 
 # Application definition
