@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+  <!-- Services Section -->
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Our Services</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="service1.jpg" class="card-img-top" alt="Service 1">
+          <div class="card-body">
+            <h5 class="card-title">House Listings</h5>
+            <p class="card-text">Browse through our extensive collection of available houses for rent.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="service2.jpg" class="card-img-top" alt="Service 2">
+          <div class="card-body">
+            <h5 class="card-title">Property Management</h5>
+            <p class="card-text">Manage your property listings, view renter applications, and more.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="service3.jpg" class="card-img-top" alt="Service 3">
+          <div class="card-body">
+            <h5 class="card-title">Tenant Screening</h5>
+            <p class="card-text">Screen potential tenants to find the best match for your rental property.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

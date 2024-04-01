@@ -11,3 +11,8 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = HouseImage
         fields = ['image']    
+
+class HouseForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = '__all__'        

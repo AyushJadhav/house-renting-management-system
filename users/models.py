@@ -14,7 +14,8 @@ from django.contrib.auth.models import User
 #         return self.firstName+" "+self.lastName
         
 class Signup(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     phone = models.CharField(max_length=13)
     isLender = models.BooleanField()
     creationdate = models.DateTimeField(auto_now_add=True)

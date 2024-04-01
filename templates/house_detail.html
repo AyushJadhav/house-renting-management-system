@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Property Details</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% block body %}
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-8 mx-auto">
@@ -42,8 +35,8 @@
           <div class="card-body">
             <div class="row">
               {% for image in property.images.all %}
-              <div class="col-md-3 mb-3">
-                <img src="{{ image.image.url }}" class="img-fluid" alt="Property Image">
+              <div class="">
+                <img src="{{ image.image.url }}" class="img-fluid" style="width: 100%; height: auto;" alt="Property Image">
               </div>
               {% endfor %}
             </div>
@@ -52,5 +45,4 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+{% endblock %}
