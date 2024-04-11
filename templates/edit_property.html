@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<body>
+    <div class="container mt-5">
+        <h2>Edit Property</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="address">Address</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                {{ form.price }}
+            </div>
+            <div class="form-group">
+                <label for="bedroom">Bedroom</label>
+                {{ form.bedroom }}
+            </div>
+            <div class="form-group">
+                <label for="bathroom">Bathroom</label>
+                {{ form.bathroom }}
+            </div>
+            <div class="form-group">
+                <label for="availableFrom">Available From</label>
+                {{ form.availableFrom }}
+            </div>
+            <div class="form-group">
+                <label for="furnished">Furnished</label>
+                {{ form.furnished }}
+            </div>
+            <div class="form-group">
+                <label for="lease">Lease</label>
+                {{ form.lease }}
+            </div>
+            <div class="form-group">
+                <label for="owner_email">Owner Email</label>
+                {{ form.owner_email }}
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</body>
+
+{% endblock %}

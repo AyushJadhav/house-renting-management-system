@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sent Successfully</title>
+    <!-- Add any CSS or Bootstrap links here -->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h1 class="text-center">Email Sent Successfully!</h1>
+                        <p class="text-center">Thank you for contacting us. Your email has been sent successfully.</p>
+                        <div class="text-center">
+                            <a href="{% url 'properties:index' %}" class="btn btn-primary">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

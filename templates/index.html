@@ -8,7 +8,9 @@
         <div class="col-md-6">
             <div class="card mb-4">
                 <div id="propertyCarousel_{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" style="max-height: 500px !Important; min-height: 500px !Important;">
+                        
+                    </style>>
                         {% for image in property.images.all %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
                             <img src="{{ image.image.url }}" class="d-block w-100" alt="Property Image">

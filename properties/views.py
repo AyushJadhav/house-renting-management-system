@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.core.mail import EmailMultiAlternatives
 
 # views.py
 from django.shortcuts import render, redirect
@@ -44,7 +46,7 @@ def post_create(request):
 
 @login_required
 def property_details(request, property_id):
-    if hasattr(request.user, 'signup') and request.user.signup.isLender:
+    if hasattr(request.user, 'signup') and (request.user.signup.isLender or not request.user.signup.isLender):
         house = Property.objects.get(id=property_id)
         return render(request, 'house_detail.html', {'property': house})
     else:
@@ -87,3 +89,39 @@ def house_update(request, pk):
     
 def services(request):
   return render(request, 'services.html')
+  
+def send_email(request,property_id, owner_email):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        msg = EmailMultiAlternatives(subject, message, email, [owner_email])
+       
+        msg.send()
+        # Add your email sending logic here
+        #send_mail(subject, message, 'jadhavayush13@gmail.com', [owner_email] )
+        
+        # Redirect after sending email
+        return HttpResponseRedirect(reverse('properties:email_success_page'))  # Redirect to a success page
+
+    # If method is not POST, render the form
+    house = Property.objects.get(id=property_id)
+    return render(request, 'house_detail.html', {'property': house})  
+    
+
+def email_success_page(request):
+    return render(request, 'email_success_page.html')
+    
+def edit_property(request, property_id):
+    property_instance = get_object_or_404(Property, id=property_id)
+
+    if request.method == 'POST':
+        form = PostCreateForm(request.POST, instance=property_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('property_details', property_id=property_id)
+    else:
+        form = PostCreateForm(instance=property_instance)
+
+    return render(request, 'edit_property.html', {'form': form})    
+    

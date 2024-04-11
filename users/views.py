@@ -32,7 +32,7 @@ def registration(request):
         #user = User.objects.create(firstName=fname, lastName=lname, email=email, password=password, phone=countryCode+phone, isLender=isLender)
         
         messages.success(request, "Register Successful")
-        return render('register_done.html')
+        return render(request,'register_done.html')
     return render(request, 'Registration.html', locals())
  
 def login_user(request):
