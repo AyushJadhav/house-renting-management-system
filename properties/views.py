@@ -9,6 +9,10 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.template.loader import get_template
+from django.template import Context
+from django.utils.html import strip_tags
 
 # views.py
 from django.shortcuts import render, redirect
@@ -95,7 +99,12 @@ def send_email(request,property_id, owner_email):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        msg = EmailMultiAlternatives(subject, message, email, [owner_email])
+        property = get_object_or_404(Property, id=property_id)
+        template = get_template('property_email.html')
+        email_message = template.render({'property': property})
+        text_content = strip_tags(email_message)
+        print(text_content)
+        msg = EmailMultiAlternatives(subject, message+text_content, email, [owner_email])
        
         msg.send()
         # Add your email sending logic here
