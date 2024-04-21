@@ -24,7 +24,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('property/', include('properties.urls')),
     path('', include('properties.urls')),
-    path('pdf/', include('pdf_manager.urls')), 
-]
+    path('pdf/', include('pdf_manager.urls')),
+    ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
