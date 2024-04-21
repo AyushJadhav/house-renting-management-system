@@ -133,4 +133,15 @@ def edit_property(request, property_id):
         form = PostCreateForm(instance=property_instance)
 
     return render(request, 'edit_property.html', {'form': form})    
+
+def mark_property_as_booked(request, property_id):
+    property = Property.objects.get(pk=property_id)
+    property.is_booked = True
+    property.save()
+    return redirect('properties:lender')
     
+def mark_property_as_available(request, property_id):
+    property = Property.objects.get(pk=property_id)
+    property.is_booked = False
+    property.save()
+    return redirect('properties:lender')    

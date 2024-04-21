@@ -17,7 +17,7 @@ class Property(models.Model):
     lease=models.CharField(max_length=200)
     created=models.DateField(auto_now_add=True)
     owner_email = models.EmailField(blank=False, null=False)
-    
+    is_booked = models.BooleanField(default=False)
     def __str__(self):
         return self.title
     

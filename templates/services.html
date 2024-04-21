@@ -3,12 +3,20 @@
 {% block body %}
 
   <!-- Services Section -->
+  <div class="jumbotron jumbotron-fluid bg-light">
+  <div class="container">
+    <h1 class="display-4">Welcome to Our Platform!</h1>
+    <p class="lead">At our platform, we offer a seamless solution for both homeowners and renters, providing a dynamic space where lenders can effortlessly list their properties and connect with eager renters looking for their next home sweet home.</p>
+    <p class="lead">Join us today and experience the convenience and excitement of finding or listing your next rental property with ease. Let us help you turn your renting journey into a delightful and rewarding experience!</p>
+  </div>
+</div>
+
   <div class="container mt-5">
     <h1 class="text-center mb-4">Our Services</h1>
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <img src="service1.jpg" class="card-img-top" alt="Service 1">
+          <img src="{% static 'properties/images/Listings.jpg' %}" alt="" style=" height: 300px;  width: 250px;">
           <div class="card-body">
             <h5 class="card-title">House Listings</h5>
             <p class="card-text">Browse through our extensive collection of available houses for rent.</p>
@@ -17,7 +25,7 @@
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img src="service2.jpg" class="card-img-top" alt="Service 2">
+          <img src="{% static 'properties/images/services1.jpg' %}" alt="" style=" height: 300px;  width: 250px;">
           <div class="card-body">
             <h5 class="card-title">Property Management</h5>
             <p class="card-text">Manage your property listings, view renter applications, and more.</p>
@@ -26,7 +34,7 @@
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img src="service3.jpg" class="card-img-top" alt="Service 3">
+          <img src="{% static 'properties/images/services2.jpg' %}" alt="" style=" height: 300px;  width: 250px;">
           <div class="card-body">
             <h5 class="card-title">Tenant Screening</h5>
             <p class="card-text">Screen potential tenants to find the best match for your rental property.</p>

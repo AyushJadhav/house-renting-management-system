@@ -29,10 +29,17 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">{{ property.title }}</h3>
+                     <h3 class="card-title">
+                        {{ property.title }}</h3>
                     <p class="card-text">Address: {{ property.address }}</p>
                     <p class="card-text">Price: ${{ property.price }}/month</p>
+                   
+                    {% if property.is_booked %}
+                    <p class="card-text {% if property.is_booked %}text-danger font-weight-bold{% endif %}">Booked</p>
+                    <a href="#" class="btn btn-primary disabled">Details</a>
+                    {% else %}
                     <a href="{% url 'properties:property_details' property.id %}" class="btn btn-primary">Details</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

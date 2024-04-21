@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: pdfUtility
+Version: 0.1.0
+Summary: A Python library for uploading and downloading PDF files
+Home-page: https://github.com/your_username/pdftility
+Author: Ayush Jadhav
+Author-email: jadhavayush2020@email.com
+License: MIT
+Description-Content-Type: text/markdown
+Requires-Dist: requests

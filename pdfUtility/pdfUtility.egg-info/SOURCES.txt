@@ -1,0 +1,9 @@
+README.md
+setup.py
+pdfUtility.egg-info/PKG-INFO
+pdfUtility.egg-info/SOURCES.txt
+pdfUtility.egg-info/dependency_links.txt
+pdfUtility.egg-info/requires.txt
+pdfUtility.egg-info/top_level.txt
+pdf_manager/__init__.py
+pdf_manager/pdf_manager.py

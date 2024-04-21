@@ -2,62 +2,73 @@
 {% load static %}
 {% block body %}
 <div class="container mt-5">
-    <h1>Welcome, {{logged_user}}!</h1>
+    <h1 class="text-center">Welcome, {{ logged_user }}!</h1>
 
-    <div class="container mt-5">
-        <h2>Create a New Home Post</h2>
-        <!-- Button to redirect -->
-        <a href="{% url 'properties:create' %}" class="btn btn-primary">Create</a>
-    </div>
-    <!-- Functionality to check how many renters are interested -->
+     <!-- Create a New Home Post section -->
     <div class="mt-5">
-        <h2>Interested Renters</h2>
-        <p>Number of renters interested: <span id="interestedCount">0</span></p>
-        <button class="btn btn-secondary" id="checkInterested">Check Interested Renters</button>
-    </div>
-
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <h2>Create a New Home Post</h2>
+                <p class="lead">Share your property with potential renters!</p>
+                <!-- Button to redirect -->
+                <a href="{% url 'properties:create' %}" class="btn btn-primary">Create Post</a>
+            </div>
+        </div>
+    </div
+   
     <!-- Functionality to see all posts -->
-    <div class="mt-5">
-        <h2>All Posts</h2>
-        <div class="row">
-            {% for property in properties %}
-            <div class="col-md-4">
-                <<div class="row mt-4">
-      <div class="col-md-10 mx-auto">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title text-center">Property Images</h3>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              {% for image in property.images.all %}
-              <div class="">
-                <img src="{{ image.image.url }}" class="img-fluid" style="width: 100%; height: auto;" alt="Property Image">
-              </div>
-              {% endfor %}
+   <div class="mt-5">
+    <h2 class="text-center mb-4">All Posts</h2>
+    <div class="row">
+        {% for property in properties %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="card-title text-center">{{ property.title }}</h3>
+                </div>
+                <div class="card-body">
+                    <div id="propertyCarousel_{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for image in property.images.all %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ image.image.url }}" class="d-block w-100" alt="Property Image">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#propertyCarousel_{{ forloop.counter }}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#propertyCarousel_{{ forloop.counter }}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li><strong>Price:</strong> ${{ property.price }}</li>
+                        <li><strong>Bedrooms:</strong> {{ property.bedroom }}</li>
+                        <li><strong>Bathrooms:</strong> {{ property.bathroom }}</li>
+                        <li><strong>Available From:</strong> {{ property.availableFrom }}</li>
+                        <li><strong>Furnished:</strong> {% if property.furnished %}Yes{% else %}No{% endif %}</li>
+                        <li><strong>Lease:</strong> {{ property.lease }}</li>
+                        <li><strong>Owner Email:</strong> {{ property.owner_email }}</li>
+                    </ul>
+                    {% if not property.is_booked %}
+                    <form method="post" action="{% url 'properties:mark_property_as_booked' property.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-block">Mark as Booked</button>
+                    </form>
+                    {% else %}
+                    <form method="post" action="{% url 'properties:mark_property_as_available' property.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-block">Mark as Available</button>
+                    </form>
+                    {% endif %}
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="card-body">
-            <!-- Property Details -->
-            <h3>{{ property.title }}</h3>
-            <ul class="list-unstyled">
-              <li><strong>Property ID:</strong> {{ property.id }}</li>        
-              <li><strong>Address:</strong> {{ property.address }}</li>
-              <li><strong>Price:</strong> ${{ property.price }}</li>
-              <li><strong>Bedrooms:</strong> {{ property.bedroom }}</li>
-              <li><strong>Bathrooms:</strong> {{ property.bathroom }}</li>
-              <li><strong>Available From:</strong> {{ property.availableFrom }}</li>
-              <li><strong>Furnished:</strong> {% if property.furnished %}Yes{% else %}No{% endif %}</li>
-              <li><strong>Lease:</strong> {{ property.lease }}</li>
-              <li><strong>Owner Email:</strong> {{ property.owner_email }}</li>
-            </ul>
-          </div>
+        {% endfor %}
     </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+</div>
 </div>
 {% endblock %}
