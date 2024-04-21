@@ -97,6 +97,7 @@ def services(request):
 def send_email(request,property_id, owner_email):
     if request.method == 'POST':
         email = request.POST.get('email')
+        print(email)
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         property = get_object_or_404(Property, id=property_id)

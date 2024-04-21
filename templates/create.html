@@ -1,15 +1,73 @@
 {% extends 'base.html' %}
 {% block body %}
-   
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-       
-    {% for image_form in image_forms %}
-        {{ image_form.as_p }}
-    {% endfor %}
-        <button type="submit">Post</button>
-    </form>
-    
-   
-{% endblock %}    
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Create New Post</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" class="form-control" id="title" value="{{ form.title.value }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" class="form-control" id="address" value="{{ form.address.value }}" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="price">Price</label>
+                                <input type="number" name="price" class="form-control" id="price" value="{{ form.price.value }}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="bedroom">Bedroom</label>
+                                <input type="number" name="bedroom" class="form-control" id="bedroom" value="{{ form.bedroom.value }}" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="bathroom">Bathroom</label>
+                                <input type="number" name="bathroom" class="form-control" id="bathroom" value="{{ form.bathroom.value }}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="availableFrom">Available From</label>
+                                <input type="date" name="availableFrom" class="form-control" id="availableFrom" value="{{ form.availableFrom.value }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="furnished">Furnished</label>
+                            <select name="furnished" class="form-control" id="furnished" required>
+                                <option value="1" {% if form.furnished.value == '1' %}selected{% endif %}>Yes</option>
+                                <option value="0" {% if form.furnished.value == '0' %}selected{% endif %}>No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lease">Lease</label>
+                            <input type="text" name="lease" class="form-control" id="lease" value="{{ form.lease.value }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="owner_email">Owner Email</label>
+                            <input type="email" name="owner_email" class="form-control" id="owner_email" value="{{ form.owner_email.value }}" required>
+                        </div>
+                        <hr>
+                        <!-- Image Upload Section -->
+                        <h4>Upload Images</h4>
+                        {% for image_form in image_forms %}
+                        <div class="form-group">
+                            <label for="image{{ forloop.counter }}">Image {{ forloop.counter }}</label>
+                            <input type="file" name="image{{ forloop.counter }}" class="form-control-file" id="image{{ forloop.counter }}" required>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        <button type="submit" class="btn btn-primary btn-block">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

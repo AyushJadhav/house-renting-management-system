@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add custom CSS styles here */
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+        .pdf-list {
+            list-style: none;
+            padding: 0;
+        }
+        .pdf-item {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pdf-item span {
+            font-weight: bold;
+        }
+        .download-link {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">All PDFs</h1>
+        <ul class="pdf-list">
+            {% for pdf in pdfs %}
+            <li class="pdf-item">
+                <span>{{ pdf.title }}</span>
+                <a href="{% url 'pdf_manager:download_pdf' pdf.id %}" class="download-link btn btn-primary">Download</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

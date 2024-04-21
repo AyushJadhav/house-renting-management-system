@@ -5,10 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            padding-top: 50px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 40px;
+        }
+        .btn-edit {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-edit:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">User Information</h1>
+    <div class="container">
+        <h1 class="text-center mb-5">User Information</h1>
         <div class="card">
             <div class="card-body">
                 <p><strong>Email:</strong> {{ userInfo.user.email }}</p>
@@ -16,8 +40,8 @@
                 <p><strong>Last Name:</strong> {{ userInfo.user.last_name }}</p>
                 <p><strong>Phone:</strong> {{ userInfo.phone }}</p>
                 <p><strong>Is Lender:</strong> {{ userInfo.isLender }}</p>
-                <div class="mb-3">
-                    <p><a href="{% url 'edit' %}" class="btn btn-primary">Click here to edit</a></p>
+                <div class="mt-4">
+                    <a href="{% url 'edit' %}" class="btn btn-primary btn-edit">Edit Information</a>
                 </div>
             </div>
         </div>

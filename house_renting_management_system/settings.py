@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'users',
     'rest_framework',
     'properties',
-    'storages'
+    'storages',
+    'pdf_manager',
 ]
 
 MIDDLEWARE = [

@@ -14,8 +14,20 @@
                 <a href="{% url 'properties:create' %}" class="btn btn-primary">Create Post</a>
             </div>
         </div>
-    </div
+    </div>
    
+   <!-- Upload contract -->
+   <div class="mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2>Upload Contract</h2>
+            <p class="lead">Share your contract with potential renters!</p>
+            <!-- Button to open upload contract URL -->
+            <a href="{% url 'pdf_manager:upload_pdf' %}" class="btn btn-primary">Upload Contract</a>
+        </div>
+    </div>
+</div>
+  
     <!-- Functionality to see all posts -->
    <div class="mt-5">
     <h2 class="text-center mb-4">All Posts</h2>
