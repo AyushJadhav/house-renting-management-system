@@ -4,7 +4,7 @@ House Renting Management System is a Django web application that bridge for home
 .
 
 # Features: 
-• User Management: Users can create accounts by provid-
+- User Management: Users can create accounts by provid-
 ing basic information and log-in to their existing accounts
 securely. The application provides role based access to the
 users:
@@ -14,13 +14,13 @@ nicate with landlords.
 – Lender: List rental properties (manage listings,
 photos, descriptions, rent), view rental applications,
 screen tenants, communicate with potential renters.
-• Property Management: Landlord/Lenders can manage
+- Property Management: Landlord/Lenders can manage
 the properties(add, update, delete), Upload photos of the
 properties
-• Rental Applications: Renters can browse through the
+- Rental Applications: Renters can browse through the
 available properties and send an application to the land-
 lords.
-• Data Management: Secure storage of user data, property
+- Data Management: Secure storage of user data, property
 information, and rental applications
 
 # Technologies Used
