@@ -1,0 +1,3 @@
+[tool.setuptools]
+packages = ["rentCalculations"]
+package-dir = {"" = "src"}

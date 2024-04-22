@@ -13,4 +13,9 @@ class UserEditForm(forms.ModelForm):
         model=User
         fields=('first_name','last_name','email',)
         
+class RentCalculationForm(forms.Form):
+    first_month_rent = forms.DecimalField(label='First Month Rent')
+    subsequent_month_rent = forms.DecimalField(label='Subsequent Month Rent')
+    num_of_months = forms.IntegerField(label='Number of Months')
+    
              

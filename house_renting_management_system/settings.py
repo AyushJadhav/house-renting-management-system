@@ -152,21 +152,21 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'jadhavayush2020@gmail.com'
 EMAIL_HOST_PASSWORD= 'jlei wcfc ebxm mlao'
 
-AWS_ACCESS_KEY_ID = 'ASIATUYJP7SUDYQDTMIU'
-AWS_SECRET_ACCESS_KEY = 'rRbJEWbkTHcknpweeH563Hv3hXcumQ1kYKjtKahc'
-# AWS_STORAGE_BUCKET_NAME = 'x23178248-cpp'
-# AWS_S3_REGION_NAME = 'eu-west-1'  # e.g., us-east-1
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_ACCESS_KEY_ID = 'ASIATUYJP7SUDCMM43WR'
+AWS_SECRET_ACCESS_KEY = 'kktx/cUS4UJft6Hn7HfGhp8Rzc0bS4LyZ+KKKDzA'
+AWS_STORAGE_BUCKET_NAME = 'x23178248-cpp'
+AWS_S3_REGION_NAME = 'eu-west-1'  # e.g., us-east-1
 
 # # For serving static files directly from S3
-# AWS_S3_URL_PROTOCOL = 'https'
+AWS_S3_URL_PROTOCOL = 'https'
 # AWS_S3_USE_SSL = True
 # AWS_S3_VERIFY = True
-
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 # # Static and media file configuration
-# STATIC_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_CUSTOM_DOMAIN}/static/'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_CUSTOM_DOMAIN}/media/'
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # AWS_S3_MEDIA_BUCKET_PREFIX = 'media/house_images/'
+

@@ -3,10 +3,10 @@ from django.contrib import messages
 from .models import *
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
-from .forms import UserEditForm
+from .forms import UserEditForm, RentCalculationForm
 from django.http import HttpResponse
 from django.urls import reverse
-
+from rentCalculationsUtility.rentCalculations.rentCalculations import RentCalculator
 # Create your views here.
 def registration(request):
     if request.method == "POST":
@@ -83,3 +83,18 @@ def profile(request):
     
     print(userInfo)
     return render(request, 'userInfo.html', {'userInfo': userInfo})        
+    
+def rent_calculation(request):
+    if request.method == 'POST':
+        form = RentCalculationForm(request.POST)
+        if form.is_valid():
+            first_month_rent = form.cleaned_data['first_month_rent']
+            subsequent_month_rent = form.cleaned_data['subsequent_month_rent']
+            num_of_months = form.cleaned_data['num_of_months']
+            rent_calculator = RentCalculator(first_month_rent, subsequent_month_rent, num_of_months)
+            total_rent = rent_calculator.calculate_rent()  # Calculate total rent
+            print("Total rent:", total_rent)
+            return render(request, 'result.html', {'total_rent': total_rent})
+    else:
+        form = RentCalculationForm()
+    return render(request, 'rent_calculation.html', {'form': form})    
