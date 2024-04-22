@@ -65,17 +65,24 @@
                         <li><strong>Lease:</strong> {{ property.lease }}</li>
                         <li><strong>Owner Email:</strong> {{ property.owner_email }}</li>
                     </ul>
+                    
                     {% if not property.is_booked %}
                     <form method="post" action="{% url 'properties:mark_property_as_booked' property.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-block">Mark as Booked</button>
+                        <button type="submit" class="btn btn-warning btn-block">Mark as Booked</button>
                     </form>
                     {% else %}
                     <form method="post" action="{% url 'properties:mark_property_as_available' property.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-block">Mark as Available</button>
+                        <button type="submit" class="btn btn-success btn-block">Mark as Available</button>
                     </form>
+                   
                     {% endif %}
+                     <br>
+                    <form method="post" action="{% url 'properties:delete_property' property.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-block">Delete Property</button>
+                    </form>
                 </div>
             </div>
         </div>

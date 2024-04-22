@@ -146,3 +146,12 @@ def mark_property_as_available(request, property_id):
     property.is_booked = False
     property.save()
     return redirect('properties:lender')    
+
+def delete_property(request, property_id):
+    property_obj = get_object_or_404(Property, pk=property_id)
+
+    if request.method == 'POST':
+        # Delete the property
+        property_obj.delete()
+        return redirect('properties:lender')
+    
