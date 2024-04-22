@@ -3,38 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent Calculation</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        /* Add custom CSS styles here */
-        body {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        h1 {
-            margin-bottom: 30px;
-            color: #007bff;
-        }
-        form {
-            max-width: 500px;
-            margin: auto;
-        }
-        button[type="submit"] {
-            width: 100%;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Rent Calculation Result</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center">Rent Calculation</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Calculate</button>
-        </form>
-    </div>
+    <h1>Rent Calculation Result</h1>
+    <p>Total Rent: €{{ total_rent }}</p>
 </body>
 </html>
