@@ -8,7 +8,8 @@
                     <h2 class="text-center">Create New Post</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data">
+                   <form method="POST" action="{% url 'properties:create' %}" enctype="multipart/form-data">
+
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -56,12 +57,10 @@
                         <hr>
                         <!-- Image Upload Section -->
                         <h4>Upload Images</h4>
-                        {% for image_form in image_forms %}
-                        <div class="form-group">
-                            <label for="image{{ forloop.counter }}">Image {{ forloop.counter }}</label>
-                            <input type="file" name="image{{ forloop.counter }}" class="form-control-file" id="image{{ forloop.counter }}" required>
-                        </div>
-                        {% endfor %}
+                        
+                         {% for image_form in image_forms %}
+        {{ image_form.as_p }}
+    {% endfor %}
                         <hr>
                         <button type="submit" class="btn btn-primary btn-block">Post</button>
                     </form>
